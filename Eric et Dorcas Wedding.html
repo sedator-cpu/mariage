@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eric et Dorcas Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f5f0; --surface:#ffffff; --ink:#14302a; --muted:#4f6760; --green:#123a31; --gold:#b98f3e; --line:#d5ddd3; --on-green:#f1f5f0;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#0c1f1a; --surface:#13302a; --ink:#eef3ec; --muted:#a9bdb4; --green:#071611; --gold:#d3ad5f; --line:#27463e; --on-green:#eef3ec}
+}
+:root[data-theme="dark"]{--bg:#0c1f1a; --surface:#13302a; --ink:#eef3ec; --muted:#a9bdb4; --green:#071611; --gold:#d3ad5f; --line:#27463e; --on-green:#eef3ec}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 'Jost',system-ui,sans-serif}
+h1,h2,h3{font-family:'Italiana',Georgia,serif;font-weight:400;margin:0;line-height:1.1}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 5vw;background:var(--green);color:var(--on-green)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--green);z-index:10}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo svg{width:46px;height:46px}
+.logo span{font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:.04em}
+nav{display:flex;gap:22px;font-size:.95rem}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover{opacity:1;color:var(--gold)}
+@media(max-width:640px){.logo span{display:none}nav{gap:14px;font-size:.88rem}}
+
+.hero{background:var(--green);color:var(--on-green);text-align:center;padding:12vh 5vw 10vh;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 50% at 50% 0%,rgba(185,143,62,.28),transparent 70%),
+  radial-gradient(40% 40% at 10% 100%,rgba(185,143,62,.14),transparent 70%)}
+.hero>*{position:relative}
+.hero p.lead{margin:0 0 18px;color:var(--gold);font-size:1.05rem;letter-spacing:.06em}
+.names{font-size:clamp(3.2rem,12vw,8.5rem)}
+.names em{display:block;font-style:normal;font-size:.35em;color:var(--gold);margin:.15em 0}
+.when{margin:28px 0 36px;font-size:1.1rem;opacity:.9}
+.count{display:flex;justify-content:center;gap:clamp(12px,3vw,32px);flex-wrap:wrap}
+.count div{min-width:78px;padding:14px 10px;border:1px solid rgba(185,143,62,.6)}
+.count b{display:block;font:400 2.2rem/1 'Italiana',serif;color:var(--gold)}
+.count small{font-size:.8rem;opacity:.8}
+.btn{display:inline-block;margin-top:38px;padding:14px 34px;background:var(--gold);color:#14302a;text-decoration:none;font-weight:500;border:0;cursor:pointer;font:500 1rem 'Jost',sans-serif}
+.btn:hover{filter:brightness(1.08)}
+
+section{padding:11vh 5vw;max-width:1000px;margin:0 auto}
+section h2{font-size:clamp(2.2rem,6vw,3.4rem);margin-bottom:14px}
+.intro{max-width:56ch;color:var(--muted);margin:0 0 44px}
+
+.timeline{list-style:none;margin:0;padding:0 0 0 26px;border-left:2px solid var(--gold)}
+.timeline li{position:relative;padding:0 0 38px 24px}
+.timeline li::before{content:"";position:absolute;left:-35px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--gold)}
+.timeline time{color:var(--gold);font-weight:500}
+.timeline h3{font-size:1.7rem;margin:2px 0 6px}
+.timeline p{margin:0;color:var(--muted);max-width:52ch}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.gallery figure{margin:0;aspect-ratio:4/5;display:flex;align-items:flex-end;padding:14px;color:var(--on-green);background:linear-gradient(160deg,var(--green),#2b5b4d)}
+.gallery figure:nth-child(2){background:linear-gradient(200deg,#8a6a2a,#123a31)}
+.gallery figure:nth-child(3){background:linear-gradient(140deg,#2b5b4d,#b98f3e)}
+.gallery figcaption{font-size:.9rem;opacity:.9}
+
+.rsvp{background:var(--surface);max-width:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rsvp>div{max-width:620px;margin:0 auto}
+label{display:block;margin:0 0 18px;font-weight:500}
+input,select,textarea{display:block;width:100%;margin-top:6px;padding:12px 14px;font:400 1rem 'Jost',sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.row{grid-template-columns:1fr}}
+.thanks{display:none;padding:22px;border:1px solid var(--gold);margin-top:10px}
+.thanks.show{display:block}
+footer{background:var(--green);color:var(--on-green);text-align:center;padding:48px 5vw}
+footer svg{width:58px;height:58px}
+footer p{margin:10px 0 0;opacity:.8}
+[hidden]{display:none!important}
+.slider{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--green)}
+.track{display:flex;height:100%;transition:transform .6s ease}
+.track figure{flex:0 0 100%;margin:0;position:relative;display:flex;align-items:flex-end;padding:18px;color:#f1f5f0}
+.track img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.track figcaption{position:relative;background:rgba(7,22,17,.6);padding:4px 12px}
+.ph{background:linear-gradient(160deg,var(--green),#2b5b4d)}.ph.g1{background:linear-gradient(200deg,#8a6a2a,#123a31)}.ph.g2{background:linear-gradient(140deg,#2b5b4d,#b98f3e)}
+.nv{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:48px;border:0;background:rgba(7,22,17,.6);color:#fff;font-size:1.6rem;cursor:pointer}
+.prev{left:0}.next{right:0}
+.dots{position:absolute;bottom:12px;right:14px;display:flex;gap:6px}
+.dots button{width:11px;height:11px;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer}
+.dots button.on{background:var(--gold)}
+.panel{border:1px solid var(--line);background:var(--surface);padding:22px;margin-bottom:26px}
+.wrap{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+.mini{padding:5px 12px;margin-right:6px;border:1px solid var(--gold);background:transparent;color:var(--ink);cursor:pointer;font:400 .9rem 'Jost',sans-serif}
+.tables{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.tables div{border:1px solid var(--gold);padding:12px;color:var(--muted);font-size:.95rem}.tables b{display:block;font:400 1.3rem 'Italiana',serif;color:var(--ink)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.stats span{padding:6px 14px;border:1px solid var(--line)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track{transition:none}}
+.qr{width:230px;max-width:100%;margin:14px auto;background:#fff;padding:10px}.qr svg{display:block;width:100%;height:auto}
+.mini[href]{display:inline-block;margin-bottom:4px;color:var(--ink)}
+input[data-gin]{min-width:160px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="edw" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="#b98f3e" stroke-width="2"/>
+    <circle cx="50" cy="50" r="42" fill="none" stroke="#b98f3e" stroke-width="0.7"/>
+    <text x="50" y="58" text-anchor="middle" font-family="Italiana, Georgia, serif" font-size="30" fill="#b98f3e" letter-spacing="1">EDW</text>
+    <path d="M36 70 Q50 78 64 70" fill="none" stroke="#b98f3e" stroke-width="1.2"/>
+  </symbol>
+</svg>
+
+<header>
+  <a class="logo" href="#top" aria-label="Eric et Dorcas Wedding, accueil">
+    <svg><use href="#edw"/></svg><span>Eric et Dorcas Wedding</span>
+  </a>
+  <nav aria-label="Navigation principale">
+    <a href="#programme">Programme</a>
+    <a href="#galerie">Photos</a>
+    <a href="#invit" id="invLink" hidden>Mon invitation</a>
+    <a href="#admin" id="adminLink" hidden>Admin</a>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <p class="lead">Nous nous marions</p>
+    <h1 class="names">Eric<em>et</em>Dorcas</h1>
+    <p class="when" id="dateTxt"></p>
+    <div class="count" id="count" role="timer" aria-live="off"></div>
+    <a class="btn" href="#invit" id="heroBtn" hidden>Ouvrir mon invitation</a>
+  </div>
+
+  <section id="invit" hidden>
+    <div class="panel" style="text-align:center">
+      <h2 id="iNom"></h2>
+      <p class="intro" id="iType" style="margin:0 auto 18px"></p>
+      <button class="btn" id="iOk" type="button" style="margin:0">Je confirme ma présence</button>
+      <div id="iAfter" hidden>
+        <p id="iTable" style="font-size:1.3rem"></p>
+        <div class="qr" id="iQr" aria-label="QR code d’entrée"></div>
+        <p>Présentez ce QR code à l’entrée : votre présence sera pointée automatiquement.</p>
+        <label style="max-width:420px;margin:20px auto 10px">Cadeau que vous offrez<input id="iGift"></label>
+        <button class="mini" id="iGiftBtn" type="button">Enregistrer mon cadeau</button>
+        <p id="iMsg" role="status"></p>
+        <a id="iWa" class="mini" target="_blank" rel="noopener" hidden style="text-decoration:none">Prévenir les mariés sur WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="programme">
+    <h2>Le programme</h2>
+    <p class="intro">Trois moments pour célébrer avec nous. Les horaires et lieux ci-dessous sont à compléter par les mariés.</p>
+    <ol class="timeline" id="events"></ol>
+  </section>
+
+  <section id="galerie">
+    <h2>Notre histoire en images</h2>
+    <p class="intro">Les photos du couple s’afficheront ici.</p>
+    <div class="slider" id="slider" aria-roledescription="carousel" aria-label="Photos du couple">
+      <div class="track" id="track"></div>
+      <button class="nv prev" id="prev" aria-label="Photo précédente">‹</button>
+      <button class="nv next" id="next" aria-label="Photo suivante">›</button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <section id="admin" hidden>
+    <h2>Administration</h2>
+    <p class="intro">Invitations, tables, pointage à l’entrée, cadeaux et photos du slider.</p>
+    <div class="stats" id="stats"></div>
+    <div class="panel">
+      <h3 style="font-size:1.6rem;margin-bottom:10px">Pointage à l’entrée</h3>
+      <button class="btn" id="scanBtn" type="button" style="margin:0 8px 8px 0">Scanner un QR code</button>
+      <input id="codeIn" placeholder="ou coller le code" style="display:inline-block;width:auto;min-width:200px">
+      <button class="mini" id="codeBtn" type="button">Pointer</button>
+      <video id="vid" playsinline muted hidden style="display:block;width:100%;max-width:360px;margin-top:10px"></video>
+      <p id="scanMsg" role="status"></p>
+    </div>
+    <div class="panel" id="giftPhase" hidden>
+      <h3 style="font-size:1.6rem;margin-bottom:10px">Phase des cadeaux</h3>
+      <p class="intro" style="margin-bottom:12px">Tous les invités confirmés sont présents. Chaque cadeau doit être enregistré avant d’être marqué comme reçu.</p>
+      <div class="wrap"><table><tbody id="gRows"></tbody></table></div>
+    </div>
+    <form id="gform" class="panel">
+      <input type="hidden" id="gid">
+      <div class="row">
+        <label>Type d’invitation
+          <select id="gtype"><option value="single">Singleton (1 personne)</option><option value="couple">Couple (2 personnes)</option></select>
+        </label>
+        <label>Table<input id="gtable" placeholder="Table 1"></label>
+      </div>
+      <div class="row">
+        <label>Nom de l’invité<input id="gnom" required></label>
+        <label id="l2" hidden>Nom du conjoint<input id="gnom2"></label>
+      </div>
+      <label style="max-width:320px">Téléphone (international, sans +)<input id="gtel" inputmode="numeric" placeholder="243810000000"></label>
+      <button class="btn" type="submit" id="gsave" style="margin:0">Ajouter l’invité</button>
+      <p id="gerr" role="status"></p>
+    </form>
+    <div class="wrap"><table><thead><tr><th>Invité</th><th>Table</th><th>Statut</th><th>Invitation</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <h3 style="margin:34px 0 14px;font-size:1.8rem">Plan des tables</h3>
+    <div class="tables" id="tables"></div>
+    <h3 style="margin:34px 0 14px;font-size:1.8rem">Photos du slider (7 maximum)</h3>
+    <div class="panel">
+      <label>Choisir jusqu’à 7 images<input type="file" id="up" accept="image/*" multiple></label>
+      <button class="mini" type="button" id="upReset">Retirer toutes les photos</button>
+      <p id="upNote" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <svg><use href="#edw"/></svg>
+  <p>Eric et Dorcas Wedding</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script>
+// ---- À MODIFIER par les mariés ----
+const CONFIG = {
+  date: "2027-06-12T11:00:00",
+  events: [
+    { when: "Vendredi 11 juin, 10h00", title: "Mariage civil", place: "Mairie — adresse à confirmer", text: "Cérémonie en comité restreint avec les familles." },
+    { when: "Samedi 12 juin, 11h00", title: "Bénédiction nuptiale", place: "Église — adresse à confirmer", text: "Échange des vœux devant tous nos proches." },
+    { when: "Samedi 12 juin, 15h00", title: "Réception", place: "Salle de fête — adresse à confirmer", text: "Repas, musique et danse jusqu’à la nuit." }
+  ]
+};
+
+const target = new Date(CONFIG.date);
+document.getElementById('dateTxt').textContent =
+  target.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+document.getElementById('events').innerHTML = CONFIG.events.map(e =>
+  `<li><time>${e.when}</time><h3>${e.title}</h3><p>${e.place}. ${e.text}</p></li>`).join('');
+
+const box = document.getElementById('count');
+function tick(){
+  let s = Math.max(0, Math.floor((target - new Date()) / 1000));
+  const d = Math.floor(s / 86400); s %= 86400;
+  const h = Math.floor(s / 3600); s %= 3600;
+  const m = Math.floor(s / 60); s %= 60;
+  box.innerHTML = [[d,'jours'],[h,'heures'],[m,'minutes'],[s,'secondes']]
+    .map(([v,l]) => `<div><b>${String(v).padStart(2,'0')}</b><small>${l}</small></div>`).join('');
+}
+tick(); setInterval(tick, 1000);
+
+(async () => {
+  const $ = id => document.getElementById(id), C = window.claude;
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const slug = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+  /* ---- Slider de 7 images ---- */
+  const caps = ['La rencontre','La demande','Les fiançailles','Nos familles','Les préparatifs','La veille','Le grand jour'];
+  let ids = [], cur = 0, timer;
+  const go = i => { cur = (i + 7) % 7; $('track').style.transform = 'translateX(-' + cur * 100 + '%)'; [...$('dots').children].forEach((d, k) => d.classList.toggle('on', k === cur)); };
+  const drawSlider = () => {
+    $('track').innerHTML = caps.map((c, i) => ids[i]
+      ? `<figure><img src="/_blob/${esc(ids[i])}" alt="${c}"><figcaption>${c}</figcaption></figure>`
+      : `<figure class="ph g${i % 3}"><figcaption>${c}</figcaption></figure>`).join('');
+    $('dots').innerHTML = caps.map((c, i) => `<button aria-label="${c}" data-i="${i}"></button>`).join('');
+    go(cur);
+  };
+  const auto = () => { clearInterval(timer); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => go(cur + 1), 5000); };
+  $('prev').onclick = () => { go(cur - 1); auto(); };
+  $('next').onclick = () => { go(cur + 1); auto(); };
+  $('dots').onclick = e => { const i = e.target.dataset.i; if (i != null) { go(+i); auto(); } };
+  drawSlider(); auto();
+
+  /* ---- Données partagées ---- */
+  const BASE = 'https://claude.ai/artifact/6Fz7sAsCBgzyW962usrAcF';
+  const CONTACT = ''; // numéro WhatsApp des mariés (format international, sans +)
+  const [db, user, assets] = C && C.use ? await Promise.all([C.use('db'), C.use('user'), C.use('assets')]) : [null, null, null];
+  const admin = user ? await user.canEdit() : false;
+  const enc = o => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const dec = s => JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/')))));
+
+  /* ---- Vue de l’invité (lien ou QR d’invitation) ---- */
+  const mi = (location.hash + '&' + location.search).match(/[#&?]i=([A-Za-z0-9_-]+)/);
+  if (mi) { let inv = null; try { inv = dec(mi[1]); } catch (e) {}
+    if (inv) {
+      ['invit'].forEach(i => $(i).hidden = false); $('heroBtn').hidden = false; $('invLink').hidden = false;
+      $('iNom').textContent = 'Bonjour ' + inv.n;
+      $('iType').textContent = inv.y === 'couple' ? 'Invitation pour deux personnes (couple).' : 'Invitation pour une personne.';
+      const key = 'edw-ok-' + inv.i, say = t => $('iMsg').textContent = t;
+      const wa = t => { if (CONTACT) { $('iWa').href = 'https://wa.me/' + CONTACT + '?text=' + encodeURIComponent(t); $('iWa').hidden = false; } };
+      const show = () => {
+        $('iOk').hidden = true; $('iAfter').hidden = false;
+        $('iTable').textContent = inv.t ? 'Votre table : ' + inv.t : 'Votre table vous sera indiquée à l’arrivée.';
+        try { const q = qrcode(0, 'M'); q.addData(BASE + '#p=' + inv.i); q.make(); $('iQr').innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }); }
+        catch (e) { $('iQr').textContent = 'Code : ' + inv.i; }
+      };
+      try { if (localStorage.getItem(key)) show(); } catch (e) {}
+      $('iOk').onclick = async () => {
+        show(); try { localStorage.setItem(key, '1'); } catch (e) {}
+        if (db) { try { await db.doc('rsvp/' + inv.i).set({ ok: true, nom: inv.n, le: Date.now() }); say('Votre présence est enregistrée.'); return; } catch (e) {} }
+        say('Votre QR code sera scanné à l’entrée.'); wa('Bonjour, c’est ' + inv.n + ' : je confirme ma présence.');
+      };
+      $('iGiftBtn').onclick = async () => {
+        const c = $('iGift').value.trim(); if (!c) return $('iGift').focus();
+        if (db) { try { await db.doc('gifts/' + inv.i).set({ de: inv.n, cadeau: c, le: Date.now() }); say('Cadeau enregistré. Merci !'); return; } catch (e) {} }
+        say('Enregistrement impossible depuis cet appareil.'); wa('Bonjour, c’est ' + inv.n + ' : mon cadeau est ' + c + '.');
+      };
+    }
+  }
+
+  if (!db || !admin) return;
+  /* ---- Administration ---- */
+  const guests = db.collection('guests'), gifts = db.collection('gifts'), site = db.doc('site/slider');
+  let G = [], R = {}, F = [], first = (location.hash.match(/[#&]p=([^&]+)/) || [])[1], pending = null;
+  const busy = new Set();
+  $('admin').hidden = false; $('adminLink') && ($('adminLink').hidden = false);
+  site.onSnapshot(s => { ids = (s.exists && s.data().ids) || []; drawSlider(); }, () => {});
+  guests.onSnapshot(s => { G = s.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => a.nom.localeCompare(b.nom)); drawAdmin(); }, () => {});
+  gifts.onSnapshot(s => { F = s.docs.map(d => ({ id: d.id, ...d.data() })); drawAdmin(); }, () => {});
+  db.collection('rsvp').onSnapshot(s => { R = {}; s.docs.forEach(d => R[d.id] = d.data()); drawAdmin(); }, () => {});
+
+  const nameOf = g => g.type === 'couple' && g.nom2 ? g.nom + ' & ' + g.nom2 : g.nom;
+  const link = g => BASE + '#i=' + enc({ i: g.id, n: nameOf(g), t: g.table || '', y: g.type || 'single' });
+  const msg = g => 'Bonjour ' + nameOf(g) + ', vous êtes invité(e) au mariage d’Eric et Dorcas. Ouvrez votre invitation, confirmez votre présence et enregistrez votre cadeau : ' + link(g);
+  const tel = g => String(g.tel || '').replace(/\D/g, '');
+  const conf = g => !!g.confirme || !!(R[g.id] && R[g.id].ok);
+  const gm = id => F.find(x => x.id === id) || {};
+  const put = (g, extra) => { const { id, ...d } = g; return guests.doc(id).set({ ...d, ...extra }); };
+  const hm = ts => new Date(ts).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+  function drawAdmin() {
+    const cf = G.filter(conf), pr = cf.filter(g => g.pointe), all = cf.length > 0 && pr.length === cf.length;
+    $('stats').innerHTML = `<span>${G.length} invitations</span><span>${cf.length} confirmées</span><span>${pr.length} présentes</span><span>${all ? 'Phase des cadeaux ouverte' : 'Cadeaux : en attente des arrivées'}</span>`;
+    $('rows').innerHTML = G.length ? G.map(g => `<tr><td>${esc(nameOf(g))}${g.type === 'couple' ? ' (couple)' : ''}</td><td>${esc(g.table || '—')}</td><td>${g.pointe ? 'Présent ' + hm(g.pointe) : conf(g) ? 'Confirmé' : 'En attente'}</td><td>
+      <a class="mini" target="_blank" rel="noopener" href="${esc('https://wa.me/' + tel(g) + '?text=' + encodeURIComponent(msg(g)))}">WhatsApp</a>
+      <a class="mini" href="${esc('sms:' + tel(g) + '?body=' + encodeURIComponent(msg(g)))}">SMS</a>
+      <button class="mini" data-act="copy" data-id="${g.id}">Copier le lien</button>
+      <button class="mini" data-act="conf" data-id="${g.id}">${g.confirme ? 'Annuler confirmation' : 'Marquer confirmé'}</button>
+      <button class="mini" data-act="edit" data-id="${g.id}">Modifier</button>
+      <button class="mini" data-act="del" data-id="${g.id}">Supprimer</button></td></tr>`).join('') : '<tr><td colspan="4">Aucun invité. Ajoutez le premier ci-dessus.</td></tr>';
+    const by = {}; G.forEach(g => (by[g.table || 'Sans table'] ||= []).push(nameOf(g)));
+    $('tables').innerHTML = Object.keys(by).sort().map(k => `<div><b>${esc(k)}</b>${by[k].map(esc).join('<br>')}</div>`).join('');
+    $('giftPhase').hidden = !all;
+    if (all) $('gRows').innerHTML = cf.map(g => `<tr><td>${esc(nameOf(g))}</td><td><input data-gin="${g.id}" value="${esc(gm(g.id).cadeau || '')}" placeholder="Cadeau non enregistré"></td><td><button class="mini" data-gs="${g.id}">Enregistrer</button><button class="mini" data-gr="${g.id}">${gm(g.id).recu ? 'Reçu ✓' : 'Marquer reçu'}</button></td></tr>`).join('');
+    if (first && G.length) { const f = first; first = null; pointer(f); }
+  }
+  const out = t => { $('scanMsg').textContent = t; };
+  async function pointer(raw) {
+    let id = String(raw || '').trim(); const m = id.match(/[#&?]p=([^&]+)/); if (m) id = decodeURIComponent(m[1]);
+    const g = G.find(x => x.id === id);
+    if (!g) return out('Code inconnu : cet invité ne figure pas dans la liste.');
+    if (g.pointe || busy.has(id)) return out('⚠ Déjà pointé' + (g.pointe ? ' à ' + hm(g.pointe) : '') + ' : ' + nameOf(g) + '.');
+    busy.add(id);
+    try { await put(g, { pointe: Date.now(), confirme: true }); out('✔ ' + nameOf(g) + ' pointé(e)' + (g.type === 'couple' ? ' (2 personnes)' : '') + '. ' + (g.table ? 'Table : ' + g.table + '.' : 'Aucune table attribuée.')); }
+    catch (e) { busy.delete(id); out('Pointage impossible.'); }
+  }
+  let stream, raf;
+  const stop = () => { cancelAnimationFrame(raf); if (stream) stream.getTracks().forEach(t => t.stop()); $('vid').hidden = true; };
+  $('scanBtn').onclick = async () => {
+    if (!window.jsQR) return out('Scanner indisponible : saisissez le code.');
+    try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }); }
+    catch (e) { return out('Caméra non autorisée : saisissez le code, ou scannez avec l’appareil photo du téléphone.'); }
+    const v = $('vid'); v.srcObject = stream; v.hidden = false; await v.play();
+    const c = document.createElement('canvas'), x = c.getContext('2d', { willReadFrequently: true });
+    const loop = () => {
+      if (v.videoWidth) { c.width = v.videoWidth; c.height = v.videoHeight; x.drawImage(v, 0, 0); const r = jsQR(x.getImageData(0, 0, c.width, c.height).data, c.width, c.height); if (r) { stop(); pointer(r.data); return; } }
+      raf = requestAnimationFrame(loop);
+    };
+    loop();
+  };
+  $('codeBtn').onclick = () => pointer($('codeIn').value);
+
+  $('gtype').onchange = () => { $('l2').hidden = $('gtype').value !== 'couple'; };
+  $('gform').onsubmit = async e => {
+    e.preventDefault();
+    const nom = $('gnom').value.trim(); if (!nom) return;
+    const id = $('gid').value || slug(nom) + '-' + Date.now().toString(36), old = G.find(x => x.id === id) || { id };
+    const type = $('gtype').value;
+    try {
+      await put(old, { nom, nom2: type === 'couple' ? $('gnom2').value.trim() : '', type, tel: $('gtel').value.trim(), table: $('gtable').value.trim(), places: type === 'couple' ? 2 : 1 });
+      e.target.reset(); $('gid').value = ''; $('l2').hidden = true; $('gsave').textContent = 'Ajouter l’invité'; $('gerr').textContent = 'Invité enregistré.';
+    } catch (x) { $('gerr').textContent = 'Enregistrement refusé.'; }
+  };
+  $('rows').onclick = async e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const g = G.find(x => x.id === b.dataset.id); if (!g) return;
+    const a = b.dataset.act;
+    if (a === 'edit') { $('gid').value = g.id; $('gtype').value = g.type || 'single'; $('l2').hidden = g.type !== 'couple'; $('gnom').value = g.nom; $('gnom2').value = g.nom2 || ''; $('gtel').value = g.tel || ''; $('gtable').value = g.table || ''; $('gsave').textContent = 'Enregistrer les changements'; $('gnom').focus(); }
+    else if (a === 'copy') { try { await navigator.clipboard.writeText(link(g)); $('gerr').textContent = 'Lien copié.'; } catch (x) { $('gerr').textContent = link(g); } }
+    else if (a === 'conf') put(g, { confirme: !g.confirme }).catch(() => {});
+    else if (pending === g.id) { guests.doc(g.id).delete().catch(() => {}); pending = null; }
+    else { pending = g.id; b.textContent = 'Confirmer ?'; setTimeout(() => { pending = null; drawAdmin(); }, 3000); }
+  };
+  $('gRows').onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const id = b.dataset.gs || b.dataset.gr, g = G.find(x => x.id === id); if (!g) return;
+    const inp = document.querySelector('[data-gin="' + id + '"]'), cad = inp.value.trim(), cur = gm(id);
+    if (b.dataset.gs) return gifts.doc(id).set({ ...cur, de: nameOf(g), cadeau: cad, le: cur.le || Date.now() }).catch(() => {});
+    if (!cad) return out('Enregistrez d’abord le cadeau de ' + nameOf(g) + '.');
+    gifts.doc(id).set({ ...cur, de: nameOf(g), cadeau: cad, recu: !cur.recu, le: cur.le || Date.now() }).catch(() => {});
+  };
+  if (!assets) { $('up').closest('.panel').hidden = true; return; }
+  $('up').onchange = async e => {
+    const files = [...e.target.files].slice(0, 7), n = Array.from({ length: 7 }, (_, i) => ids[i] || '');
+    $('upNote').textContent = 'Envoi en cours…';
+    try { for (let i = 0; i < files.length; i++) n[i] = (await assets.upload(files[i])).id; await site.set({ ids: n }); $('upNote').textContent = files.length + ' photo(s) ajoutée(s).'; }
+    catch (x) { $('upNote').textContent = 'Envoi impossible. Vérifiez la taille et le format des images.'; }
+  };
+  $('upReset').onclick = () => site.set({ ids: [] }).then(() => { $('upNote').textContent = 'Photos retirées.'; });
+})();
+</script>
+</body>
+</html>
